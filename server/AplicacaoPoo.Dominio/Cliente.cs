@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace AplicacaoPoo.Dominio
 {
-    public class Debito
+    public class Cliente
     {
-        Pagamento Pagamento { get; set; }
-        double Desconto { get; set; }
+        string Nome { get; set; }
+        string Cpf { get;set; }
+        Debito Debito { get; set; }
+        Credito Credito { get; set; }
     }
 }
