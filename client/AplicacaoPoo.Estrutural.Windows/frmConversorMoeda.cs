@@ -1,13 +1,5 @@
-﻿using AplicacaoPoo.Dominio.services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using AplicacaoPoo.Dominio.Helpers;
+using AplicacaoPoo.Dominio.services;
 
 namespace AplicacaoPoo.Estrutural.Windows
 {
@@ -16,41 +8,79 @@ namespace AplicacaoPoo.Estrutural.Windows
         public frmConversorMoeda()
         {
             InitializeComponent();
-            btnConverterEmReal.Enabled = false;
-        }
-
-        private void btnConverterEmReal_Click(object sender, EventArgs e)
-        {
-            var valorEmDolar = decimal.Parse(txtValorEmDolar.Text);
+            lblPrimeiroValor.Text = $"1 {MoedaHelper.Dolar} igual a";
+            lblSegundoValor.Text = $"5,12 {MoedaHelper.Real}";
             
-            var moeda = new ConverterMoedaService();
-            var resultado = moeda.ConverterDolarEmReal(valorEmDolar);
-            
-            //string interpolation
-            MessageBox.Show($"Valor convertido é: {resultado} reais");
+            //Coloca os valores da nossa classe dentro do combobox.
+            var list = new List<string>();
+            list.Add(MoedaHelper.Dolar);
+            list.Add(MoedaHelper.Euro);
+            list.Add(MoedaHelper.Libra);
+            cmbMoedas.DataSource = list; 
+            cmbMoedas.SelectedIndex = 0;          
         }
-
 
         private void txtValorEmDolar_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (txtValorEmDolar.Text == "")
-                {
-                    btnConverterEmReal.Enabled = false
-                        ;
-                    return;
-                };
+                if (txtValorEmDolar.Text == "") return;
 
-                var resultado = decimal.Parse(txtValorEmDolar.Text);
-                btnConverterEmReal.Enabled = true;
+                var valorEmDolar = decimal.Parse(txtValorEmDolar.Text);
+
+                var moeda = new ConverterMoedaService();
+                var resultado = moeda.ConverterDolarEmReal(valorEmDolar);
+                lblPrimeiroValor.Text = $"{valorEmDolar} {MoedaHelper.Dolar} igual a";
+                lblSegundoValor.Text = $"{resultado} {MoedaHelper.Real}";
+
             }
             catch (Exception)
             {
                 MessageBox.Show("A cotação do dalor é um valor decimal");
                 txtValorEmDolar.Focus();
-                btnConverterEmReal.Enabled = false;
             }
+        }
+
+        private void cmbMoedas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            #region MEU PROGRAMA
+            //Atalho para comentar código CTRL + K + C
+            //Atalho para descomentar o código CTRL + K + U
+            if (txtValorEmDolar.Text == "") return;
+
+            var valorEmDolar = decimal.Parse(txtValorEmDolar.Text);
+            var moedaService = new ConverterMoedaService();
+            switch (cmbMoedas.SelectedValue)
+            {
+                case MoedaHelper.Dolar:
+                    {
+                        var valorConvertido = 
+                            moedaService.ConverterDolarEmReal(valorEmDolar);
+                        lblPrimeiroValor.Text = $"{valorEmDolar} {MoedaHelper.Dolar} igual a";
+                        lblSegundoValor.Text = $"{valorConvertido} {MoedaHelper.Real}";
+
+                        break;
+                    }
+                case MoedaHelper.Euro:
+                    {
+                        var valorConvertido =
+                            moedaService.ConverterEuroEmReal(valorEmDolar);
+                        break;
+                    }
+                case MoedaHelper.Libra:
+                    {
+                        var valorConvertido =
+                            moedaService.ConverterLibraEmReal(valorEmDolar);
+                        break;
+                    }
+                default:
+                    break;
+            }
+            #endregion
+
+            #region PROGRAMA TOP DAS GALAXIA DO PROFESSOR
+
+            #endregion
         }
     }
 }
