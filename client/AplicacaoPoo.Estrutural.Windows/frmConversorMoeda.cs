@@ -65,12 +65,18 @@ namespace AplicacaoPoo.Estrutural.Windows
                     {
                         var valorConvertido =
                             moedaService.ConverterEuroEmReal(valorEmDolar);
+                        lblPrimeiroValor.Text = $"{valorEmDolar} {MoedaHelper.Euro} igual a";
+                        lblSegundoValor.Text = $"{valorConvertido} {MoedaHelper.Real}";
+
                         break;
                     }
                 case MoedaHelper.Libra:
                     {
                         var valorConvertido =
                             moedaService.ConverterLibraEmReal(valorEmDolar);
+                        lblPrimeiroValor.Text = $"{valorEmDolar} {MoedaHelper.Libra} igual a";
+                        lblSegundoValor.Text = $"{valorConvertido} {MoedaHelper.Real}";
+
                         break;
                     }
                 default:
