@@ -30,20 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStart));
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progressBarLoading = new System.Windows.Forms.ProgressBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timerLoading = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // progressBar1
+            // progressBarLoading
             // 
-            this.progressBar1.Location = new System.Drawing.Point(22, 145);
-            this.progressBar1.MarqueeAnimationSpeed = 50;
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(405, 23);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar1.TabIndex = 0;
+            this.progressBarLoading.Location = new System.Drawing.Point(29, 142);
+            this.progressBarLoading.MarqueeAnimationSpeed = 50;
+            this.progressBarLoading.Name = "progressBarLoading";
+            this.progressBarLoading.Size = new System.Drawing.Size(392, 16);
+            this.progressBarLoading.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBarLoading.TabIndex = 0;
             // 
             // pictureBox1
             // 
@@ -69,7 +69,7 @@
             this.ClientSize = new System.Drawing.Size(460, 200);
             this.ControlBox = false;
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.progressBarLoading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmStart";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -81,7 +81,7 @@
 
         #endregion
 
-        private ProgressBar progressBar1;
+        private ProgressBar progressBarLoading;
         private PictureBox pictureBox1;
         private System.Windows.Forms.Timer timerLoading;
     }

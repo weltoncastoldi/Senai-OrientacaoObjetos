@@ -15,14 +15,13 @@ namespace AplicacaoPoo.Estrutural.Windows
         public frmStart()
         {
             InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.None;
         }
 
         private void timerLoading_Tick(object sender, EventArgs e)
         {
             timerLoading.Enabled = true;
-            progressBar1.Increment(2);
-            if(progressBar1.Value == 100)
+            progressBarLoading.Increment(2);
+            if(progressBarLoading.Value == 100)
             {
                 timerLoading.Enabled = false;
                 var form = new frmPrincipal();
